@@ -6,7 +6,6 @@ namespace Ground
 {
     public class RandomCharacterSpawner : MonoBehaviour
     {
-        
 
         public GameObject ground;
         public GameObject[] prefabs;
