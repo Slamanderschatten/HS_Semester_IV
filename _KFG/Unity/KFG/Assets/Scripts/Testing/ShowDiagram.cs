@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
 using Ground;
 using UnityEngine;
 
@@ -26,9 +28,10 @@ namespace Testing
             values.Clear();
             while(values.Count < chartBars.Count)
                 values.Add(0);
-            for(int i = 0; i < valueNumber; i++)
+            for(int i = 0; i < 500; i++)
                 values[UnityEngine.Random.Range(0, chartBars.Count)]++;
             ShowBars();
+            ExportToCsv();
         }
         
         [ContextMenu("Normalverteilter Random wert")]
@@ -37,16 +40,37 @@ namespace Testing
             values.Clear();
             while(values.Count < chartBars.Count)
                 values.Add(0);
-            for(int i = 0; i < valueNumber; i++)
+            for(int i = 0; i < 500; i++)
                 values[RandomCharacterSpawner.RandomRangeNormal(0, chartBars.Count)]++;
             ShowBars();
+            ExportToCsv();
         }
 
 
         private void ShowBars()
         {
             for (int i = 0; i < chartBars.Count; i++)
-                chartBars[i].transform.localScale = new Vector3(0, values[i], 0);
+                chartBars[i].transform.localScale = new Vector3(1, values[i], 1);
+        }
+
+
+        private void ExportToCsv()
+        {
+            string filePath = Application.dataPath + "/ChartData.csv";
+            StringBuilder sb = new StringBuilder();
+
+            // CSV Header (optional)
+            sb.AppendLine("BarIndex;Value");
+
+            // Daten hinzufügen
+            for (int i = 0; i < values.Count; i++)
+            {
+                sb.AppendLine($"{i};{values[i]}");
+            }
+
+            // Datei schreiben
+            File.WriteAllText(filePath, sb.ToString());
+            Debug.Log($"Daten erfolgreich exportiert nach: {filePath}");
         }
     }
 }
