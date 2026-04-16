@@ -11,7 +11,8 @@ namespace Testing
     public class ShowDiagram : MonoBehaviour
 
     {
-        public int valueNumber;
+        public int valueNumber = 5000;
+        public float scaleMultiplier = 1f;
 
         private readonly List<int> values = new();
         private List<Transform> chartBars;
@@ -28,7 +29,7 @@ namespace Testing
             values.Clear();
             while(values.Count < chartBars.Count)
                 values.Add(0);
-            for(int i = 0; i < 500; i++)
+            for(int i = 0; i < valueNumber; i++)
                 values[UnityEngine.Random.Range(0, chartBars.Count)]++;
             ShowBars();
             ExportToCsv();
@@ -40,7 +41,7 @@ namespace Testing
             values.Clear();
             while(values.Count < chartBars.Count)
                 values.Add(0);
-            for(int i = 0; i < 500; i++)
+            for(int i = 0; i < valueNumber; i++)
                 values[RandomCharacterSpawner.RandomRangeNormal(0, chartBars.Count)]++;
             ShowBars();
             ExportToCsv();
@@ -50,7 +51,7 @@ namespace Testing
         private void ShowBars()
         {
             for (int i = 0; i < chartBars.Count; i++)
-                chartBars[i].transform.localScale = new Vector3(1, values[i], 1);
+                chartBars[i].transform.localScale = new Vector3(1, values[i] * scaleMultiplier, 1);
         }
 
 
