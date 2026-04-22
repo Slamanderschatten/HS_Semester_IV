@@ -13,7 +13,9 @@ class AIFORGAMES_API APlaneRandomSpawner : public AActor
 	
 public:
 	UPROPERTY(EditAnywhere, Category="Spawning")
-	AActor* spawnPlane;
+	UStaticMeshComponent* groundPlane;
+	UPROPERTY(EditAnywhere, Category="Spawning")
+	FVector distanceFromBorder;
 	UPROPERTY(EditAnywhere, Category="Spawning")
 	TArray<FSpawnEntry> objectsToSpawn;
 	

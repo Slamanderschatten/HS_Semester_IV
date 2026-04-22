@@ -6,6 +6,8 @@
 APlaneRandomSpawner::APlaneRandomSpawner()
 {
 	PrimaryActorTick.bCanEverTick = false;
+	groundPlane = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Ground"));
+	RootComponent = groundPlane;
 }
 
 
@@ -18,20 +20,27 @@ void APlaneRandomSpawner::BeginPlay()
 
 void APlaneRandomSpawner::Spawn()
 {
-	if (objectsToSpawn.Num() == 0 || spawnPlane == nullptr)
+	if (objectsToSpawn.Num() == 0)
 		return;
 	
-	FVector planeScale = spawnPlane->GetActorScale3D();
+	FVector planeScale = groundPlane->GetComponentScale();
+	FVector boundingBox = FVector(
+		planeScale.X/2*100 - distanceFromBorder.X, 
+		planeScale.Y/2*100 - distanceFromBorder.Y, 
+		0);
 	for(FSpawnEntry entry : objectsToSpawn)
 	{
 		if (entry.actorClass == nullptr)
 			continue;
 		
-		FVector randomPosition = UKismetMathLibrary::RandomPointInBoundingBox(
-			GetActorLocation(),
-			FVector(planeScale.X/2, planeScale.Y/2, 0));
-		FActorSpawnParameters spawnParams;
-		GetWorld()->SpawnActor<AActor>(entry.actorClass, randomPosition, FRotator::ZeroRotator, spawnParams);
+		for (int i = 0; i < entry.spawnCount; i++)
+		{
+			FActorSpawnParameters spawnParams;
+			FVector randomPosition = UKismetMathLibrary::RandomPointInBoundingBox(
+				GetActorLocation(),
+				boundingBox);
+			GetWorld()->SpawnActor<AActor>(entry.actorClass, randomPosition, FRotator::ZeroRotator, spawnParams);
+		}
 	}
 	
 }
