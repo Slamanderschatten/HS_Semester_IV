@@ -20,6 +20,8 @@ void APlaneRandomSpawner::BeginPlay()
 
 void APlaneRandomSpawner::Spawn()
 {
+	Clear();
+	
 	if (objectsToSpawn.Num() == 0)
 		return;
 	
@@ -39,9 +41,47 @@ void APlaneRandomSpawner::Spawn()
 			FVector randomPosition = UKismetMathLibrary::RandomPointInBoundingBox(
 				GetActorLocation(),
 				boundingBox);
-			GetWorld()->SpawnActor<AActor>(entry.actorClass, randomPosition, FRotator::ZeroRotator, spawnParams);
+			FRotator randomRotation = FRotator(0, FMath::FRandRange(0.f, 360.f), 0);
+			AActor* newActor = GetWorld()->SpawnActor<AActor>(
+				entry.actorClass, FVector::Zero(), randomRotation, spawnParams
+				);
+			
+			bool newPos;
+			int errorCount = 0;
+			do 
+			{
+				newPos = false;
+				randomPosition = UKismetMathLibrary::RandomPointInBoundingBox(
+					GetActorLocation(),
+					boundingBox);
+				newActor->SetActorLocation(randomPosition);
+
+				for (AActor* otherActor : spawnedActors)
+				{
+					if (otherActor->GetDistanceTo(newActor) < distanceToNeighbour)
+					{
+						newPos = true;
+						break;
+					}
+				}
+				
+				if (++errorCount > 50)
+					return;
+			} while(newPos);
+			
+			spawnedActors.Add(newActor);
 		}
+	}	
+}
+
+
+void APlaneRandomSpawner::Clear()
+{
+	for (AActor* actor : spawnedActors)
+	{
+		if (actor != nullptr)
+			actor->Destroy();
 	}
-	
+	spawnedActors.Empty();
 }
 

@@ -3,7 +3,9 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "AIActivatable.h"
 #include "AIComponent.h"
+#include "AIConsideration.h"
 #include "Components/ActorComponent.h"
 #include "AIReasoner.generated.h"
 
@@ -17,8 +19,13 @@ class AIFORGAMES_API UAIReasoner : public UAIComponent
 public:
 
 protected:
+	TArray<UAIActivatable*>* activatables;
+	UAIConsideration* consideration;
 
 private:
+	
+	
+	
 	/********************** METHODS *********************/
 private:
 
@@ -29,4 +36,7 @@ public:
 	virtual void BeginPlay() override;
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType,
 	                           FActorComponentTickFunction* ThisTickFunction) override;
+	void SetActivatables(TArray<UAIActivatable*>* activatableList);
+	void SetConsideration(UAIConsideration* considerationForThis);
+	virtual void Process(){}
 };

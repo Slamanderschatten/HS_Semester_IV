@@ -17,7 +17,14 @@ public:
 	UPROPERTY(EditAnywhere, Category="Spawning")
 	FVector distanceFromBorder;
 	UPROPERTY(EditAnywhere, Category="Spawning")
+	float distanceToNeighbour;
+	UPROPERTY(EditAnywhere, Category="Spawning")
 	TArray<FSpawnEntry> objectsToSpawn;
+	
+protected:
+	
+private:
+	TArray<AActor*> spawnedActors = TArray<AActor*>();
 	
 	
 	
@@ -33,5 +40,6 @@ public:
 	APlaneRandomSpawner();
 	
 	void Spawn();
+	void Clear();
 	
 };

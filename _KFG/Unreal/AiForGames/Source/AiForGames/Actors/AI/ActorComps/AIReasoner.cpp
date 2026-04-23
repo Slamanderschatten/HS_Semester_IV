@@ -3,6 +3,8 @@
 
 #include "AIReasoner.h"
 
+#include "AiForGames/Actors/Manager/GameManager.h"
+
 
 // Sets default values for this component's properties
 UAIReasoner::UAIReasoner()
@@ -30,6 +32,18 @@ void UAIReasoner::TickComponent(float DeltaTime, ELevelTick TickType, FActorComp
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	// ...
+	Process();
+}
+
+
+void UAIReasoner::SetActivatables(TArray<UAIActivatable*>* activatableList)
+{
+	activatables = activatableList;
+}
+
+
+void UAIReasoner::SetConsideration(UAIConsideration* considerationForThis)
+{
+	this->consideration = considerationForThis;
 }
 

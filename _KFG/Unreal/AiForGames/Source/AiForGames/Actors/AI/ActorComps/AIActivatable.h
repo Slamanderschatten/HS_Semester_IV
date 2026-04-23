@@ -8,27 +8,32 @@
 #include "AIActivatable.generated.h"
 
 
-UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
+UCLASS(Abstract, Blueprintable, ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
 class AIFORGAMES_API UAIActivatable : public UAIComponent
 {
 	GENERATED_BODY()
 
 	/********************** ATTRIBUTES *********************/
 public:
-	UPROPERTY(EditAnywhere, Category="Test")
-	int test;
 
 protected:
 
 private:
+	
+	
+	
+	
+	
+	
 	/********************** METHODS *********************/
-private:
-
-protected:
 
 public:
 	UAIActivatable();
-	virtual void BeginPlay() override;
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType,
-	                           FActorComponentTickFunction* ThisTickFunction) override;
+
+protected:
+	
+private:
+	
+	
+	
 };
