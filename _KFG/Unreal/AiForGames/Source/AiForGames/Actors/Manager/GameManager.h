@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Engine/GameInstance.h"
+#include "GameFramework/Actor.h"
 #include "Enums/NpcTargetInteraction.h"
 #include "GameManager.generated.h"
 
@@ -16,7 +17,7 @@ public:
 	UPROPERTY(EditAnywhere, Category="Npcs")
 	AActor* npcTarget;
 	UPROPERTY(EditAnywhere, Category="Npcs")
-	UNpcTargetInteraction npcTargetInteraction = UNpcTargetInteraction::SeekKinematic;
+	ENpcTargetInteraction npcTargetInteraction = ENpcTargetInteraction::SeekKinematic;
 
 	
 	
@@ -33,7 +34,7 @@ public:
 	AGameManager();
 	static AGameManager* I() {return instance;}
 	AActor* GetNpcTarget() const;
-	UNpcTargetInteraction GetNpcTargetInteraction() const;
+	ENpcTargetInteraction GetNpcTargetInteraction() const;
 
 	
 protected:

@@ -21,7 +21,7 @@ protected:
 private:
 	
 	AActor* npcTarget;
-	UNpcTargetInteraction npcTargetInteraction;
+	ENpcTargetInteraction npcTargetInteraction;
 
 
 public:

@@ -29,19 +29,19 @@ void UNpcReasoner::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 void UNpcReasoner::Process()
 {
 	AActor* target = AGameManager::I()->GetNpcTarget();
-	UNpcTargetInteraction interaction = AGameManager::I()->GetNpcTargetInteraction();
+	ENpcTargetInteraction interaction = AGameManager::I()->GetNpcTargetInteraction();
 	if (target == npcTarget && interaction == npcTargetInteraction)
 		return;
 	
 	switch (interaction)
 	{
-	case UNpcTargetInteraction::FleeKinematic:
+	case ENpcTargetInteraction::FleeKinematic:
 		break;
-	case UNpcTargetInteraction::FleeDynamic:
+	case ENpcTargetInteraction::FleeDynamic:
 		break;
-	case UNpcTargetInteraction::SeekKinematic:
+	case ENpcTargetInteraction::SeekKinematic:
 		break;
-	case UNpcTargetInteraction::SeekDynamic:
+	case ENpcTargetInteraction::SeekDynamic:
 		break;
 	}
 }

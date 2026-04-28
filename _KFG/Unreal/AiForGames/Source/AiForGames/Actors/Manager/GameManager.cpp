@@ -6,11 +6,6 @@
 
 AGameManager::AGameManager()
 {
-	if (instance != nullptr)
-	{
-		this->Destroy();
-		return;
-	}
 	instance = this;
 }
 
@@ -21,7 +16,10 @@ AActor* AGameManager::GetNpcTarget() const
 }
 
 
-UNpcTargetInteraction AGameManager::GetNpcTargetInteraction() const
+ENpcTargetInteraction AGameManager::GetNpcTargetInteraction() const
 {
 	return npcTargetInteraction;
 }
+
+
+AGameManager* AGameManager::instance = nullptr;

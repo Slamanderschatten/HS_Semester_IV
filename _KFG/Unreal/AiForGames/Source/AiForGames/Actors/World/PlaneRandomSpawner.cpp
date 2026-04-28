@@ -76,12 +76,12 @@ void APlaneRandomSpawner::Spawn()
 
 
 void APlaneRandomSpawner::Clear()
-{
+{/*
 	for (AActor* actor : spawnedActors)
 	{
 		if (actor != nullptr)
 			actor->Destroy();
 	}
-	spawnedActors.Empty();
+	spawnedActors.Empty();*/
 }
 

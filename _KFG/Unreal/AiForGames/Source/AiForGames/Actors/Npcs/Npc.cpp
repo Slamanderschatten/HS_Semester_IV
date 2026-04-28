@@ -13,19 +13,19 @@ ANpc::ANpc()
 void ANpc::PostInitializeComponents()
 {
 	Super::PostInitializeComponents();
-	GetOwner()->GetComponents<UAIKnowledge>(knowledges);
-	GetOwner()->GetComponents<UAIActivatable>(activatables);
-	consideration = GetOwner()->FindComponentByClass<UAIConsideration>();
-	reasoner = GetOwner()->FindComponentByClass<UAIReasoner>();
-	
-	reasoner->SetActivatables(&activatables);
-	reasoner->SetConsideration(consideration);
 }
 
 
 void ANpc::BeginPlay()
 {
 	Super::BeginPlay();
+	GetComponents<UAIKnowledge>(knowledges);
+	GetComponents<UAIActivatable>(activatables);
+	consideration = FindComponentByClass<UAIConsideration>();
+	reasoner = FindComponentByClass<UAIReasoner>();
+	
+	reasoner->SetActivatables(&activatables);
+	reasoner->SetConsideration(consideration);
 	
 }
 
