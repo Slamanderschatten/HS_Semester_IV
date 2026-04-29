@@ -3,6 +3,8 @@
 
 #include "AIReasoner.h"
 
+#include <rapidjson/rapidjson.h>
+
 #include "AiForGames/Actors/Manager/GameManager.h"
 
 
@@ -45,5 +47,76 @@ void UAIReasoner::SetActivatables(TArray<UAIActivatable*>* activatableList)
 void UAIReasoner::SetConsideration(UAIConsideration* considerationForThis)
 {
 	this->consideration = considerationForThis;
+}
+
+
+UAIActivatable* UAIReasoner::GetActivatable(UClass* type) const
+{
+	for (UAIActivatable* activatable : *activatables)
+	{
+		if (activatable->IsA(type))
+			return activatable;
+	}
+	return nullptr;
+}
+
+
+void UAIReasoner::ActivateActivatableWithoutCheck(UAIActivatable* activatable)
+{
+	activeActivatables.Push(activatable);
+	activatable->Activate();
+}
+
+
+UAIActivatable* UAIReasoner::ActivateActivatableWithoutCheck(size_t activatableIndex)
+{
+	ActivateActivatableWithoutCheck((*activatables)[activatableIndex]);
+	return (*activatables)[activatableIndex];
+}
+
+
+UAIActivatable* UAIReasoner::ActivateActivatable(size_t activatableIndex)
+{
+	if (activatableIndex <= activatables->Num() || (*activatables)[activatableIndex]->IsActive())
+		return nullptr;
+	return ActivateActivatableWithoutCheck(activatableIndex);
+}
+
+
+bool UAIReasoner::ActivateActivatable(UAIActivatable* activatable)
+{
+	size_t activatableIndex = activatables->Find(activatable);
+	if (activatableIndex == INDEX_NONE || activatable->IsActive())
+		return false;
+	ActivateActivatableWithoutCheck(activatableIndex);
+	return true;
+}
+
+
+UAIActivatable* UAIReasoner::ActivateActivatable(UClass* type)
+{
+	UAIActivatable* activatable = GetActivatable(type);
+	if (activatable)
+		ActivateActivatableWithoutCheck(activatable);
+	return activatable;
+}
+
+
+bool UAIReasoner::DeactivateActivatable(size_t activatableIndex)
+{
+	if (activatableIndex >= activeActivatables.Num())
+		return false;
+	activeActivatables[activatableIndex]->Deactivate();
+	activeActivatables.RemoveAt(activatableIndex);
+	return true;
+}
+
+
+bool UAIReasoner::DeactivateActivatable(UAIActivatable* activatable)
+{
+	size_t activatableIndex = activatables->Find(activatable);
+	if (activatableIndex == INDEX_NONE)
+		return false;
+	return DeactivateActivatable(activatableIndex);
 }
 

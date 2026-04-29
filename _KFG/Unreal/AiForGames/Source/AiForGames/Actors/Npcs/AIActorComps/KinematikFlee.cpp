@@ -26,7 +26,7 @@ void UKinematikFlee::TickComponent(float DeltaTime, ELevelTick TickType, FActorC
 
 void UKinematikFlee::ActualizePosition(float deltaT) const
 {
-	FVector velocity = GetOwner()->GetActorForwardVector() - origin->GetActorLocation();
+	FVector velocity = GetOwner()->GetActorLocation() - origin->GetActorLocation();
 	velocity = velocity.GetClampedToMaxSize(maxVelocity);
 	GetOwner()->SetActorLocation(GetOwner()->GetActorLocation() + velocity * deltaT);
 }

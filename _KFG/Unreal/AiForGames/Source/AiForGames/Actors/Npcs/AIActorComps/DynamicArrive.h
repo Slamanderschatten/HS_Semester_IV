@@ -5,11 +5,11 @@
 #include "CoreMinimal.h"
 #include "AiForGames/Actors/AI/ActorComps/AIActivatable.h"
 #include "Components/ActorComponent.h"
-#include "DynamicFlee.generated.h"
+#include "DynamicArrive.generated.h"
 
 
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
-class AIFORGAMES_API UDynamicFlee : public UAIActivatable
+class AIFORGAMES_API UDynamicArrive : public UAIActivatable
 {
 	GENERATED_BODY()
 
@@ -18,19 +18,23 @@ public:
 	float maxAcceleration = 100;
 	UPROPERTY(EditAnywhere, Category="Velocity")
 	float maxVelocity = 100;
+	UPROPERTY(EditAnywhere, Category="Velocity")
+	float targetRadius = 5;
+	UPROPERTY(EditAnywhere, Category="Velocity")
+	float breakFactor = 0.95;
 
 protected:
-
-private:
 	FVector linearVelocity = FVector::ZeroVector;
 	AActor* origin;
 
+private:
+
 
 public:
-	UDynamicFlee() = default;
-	void SetSeeker(AActor* seeker);
+	UDynamicArrive();
+	void SetTarget(AActor* seeker);
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType,
-	                           FActorComponentTickFunction* ThisTickFunction) override;
+							   FActorComponentTickFunction* ThisTickFunction) override;
 
 protected:
 

@@ -19,11 +19,13 @@ void ANpc::PostInitializeComponents()
 void ANpc::BeginPlay()
 {
 	Super::BeginPlay();
-	GetComponents<UAIKnowledge>(knowledges);
+	knowledge = FindComponentByClass<UAIKnowledge>();
 	GetComponents<UAIActivatable>(activatables);
 	consideration = FindComponentByClass<UAIConsideration>();
 	reasoner = FindComponentByClass<UAIReasoner>();
 	
+	for (UAIActivatable* activatable : activatables)
+		activatable->SetKnowledge(knowledge);
 	reasoner->SetActivatables(&activatables);
 	reasoner->SetConsideration(consideration);
 	
@@ -38,9 +40,9 @@ void ANpc::Tick(float DeltaTime)
 /********************************* getter / setter ****************************************/
 
 
-TArray<UAIKnowledge*>& ANpc::Knowledges()
+UAIKnowledge& ANpc::Knowledge() const
 {
-	return knowledges;
+	return *knowledge;
 }
 
 

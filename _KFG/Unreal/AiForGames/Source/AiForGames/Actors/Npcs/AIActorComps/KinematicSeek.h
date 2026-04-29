@@ -5,16 +5,15 @@
 #include "CoreMinimal.h"
 #include "AiForGames/Actors/AI/ActorComps/AIActivatable.h"
 #include "Components/ActorComponent.h"
-#include "KinematikFlee.generated.h"
+#include "KinematicSeek.generated.h"
 
 
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
-class AIFORGAMES_API UKinematikFlee : public UAIActivatable
+class AIFORGAMES_API UKinematicSeek : public UAIActivatable
 {
 	GENERATED_BODY()
 
 public:
-	
 	UPROPERTY(EditAnywhere, Category="Velocity")
 	float maxVelocity = 100;
 
@@ -26,10 +25,10 @@ private:
 
 
 public:
-	UKinematikFlee();
-	void SetSeeker(AActor* seeker);
+	UKinematicSeek();
+	void SetTarget(AActor* target);
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType,
-	                           FActorComponentTickFunction* ThisTickFunction) override;
+							   FActorComponentTickFunction* ThisTickFunction) override;
 
 protected:
 

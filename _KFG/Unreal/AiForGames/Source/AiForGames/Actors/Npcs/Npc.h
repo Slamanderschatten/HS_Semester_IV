@@ -20,7 +20,7 @@ public:
 protected:
 	
 private:
-	TArray<UAIKnowledge*> knowledges;
+	UAIKnowledge* knowledge;
 	TArray<UAIActivatable*> activatables;
 	UAIConsideration* consideration;
 	UAIReasoner* reasoner;
@@ -35,7 +35,7 @@ public:
 	ANpc();
 	virtual void PostInitializeComponents() override;
 	virtual void Tick(float DeltaTime) override;
-	TArray<UAIKnowledge*>& Knowledges();
+	UAIKnowledge& Knowledge() const;
 	TArray<UAIActivatable*>& Activatables();
 	UAIConsideration& Considerations() const;
 	UAIReasoner& Reasoner() const;

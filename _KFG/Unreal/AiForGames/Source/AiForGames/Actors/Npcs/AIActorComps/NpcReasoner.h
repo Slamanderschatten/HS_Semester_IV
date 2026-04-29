@@ -20,8 +20,9 @@ protected:
 
 private:
 	
-	AActor* npcTarget;
+	AActor* npcTarget = nullptr;
 	ENpcTargetInteraction npcTargetInteraction;
+	UAIActivatable* moveActivatable;
 
 
 public:
@@ -30,6 +31,7 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType,
 	                           FActorComponentTickFunction* ThisTickFunction) override;
 	virtual void Process() override;
+	virtual void SetActivatables(TArray<UAIActivatable*>* activatableList) override;
 
 protected:
 

@@ -1,20 +1,21 @@
 ﻿// Copyright © Slamanderschatten. All rights reserved.
 
 
-#include "DynamicFlee.h"
+#include "DynamicSeek.h"
 
 
-
-
-
-void UDynamicFlee::SetSeeker(AActor* seeker)
+// Sets default values for this component's properties
+UDynamicSeek::UDynamicSeek()
+{
+}
+void UDynamicSeek::SetTarget(AActor* seeker)
 {
 	origin = seeker;
 }
 
 
 // Called every frame
-void UDynamicFlee::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
+void UDynamicSeek::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
@@ -22,9 +23,9 @@ void UDynamicFlee::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 }
 
 
-void UDynamicFlee::ActualizePosition(float deltaT)
+void UDynamicSeek::ActualizePosition(float deltaT)
 {
-	FVector acceleration = GetOwner()->GetActorLocation() - origin->GetActorLocation();;
+	FVector acceleration = origin->GetActorLocation() - GetOwner()->GetActorLocation();
 	acceleration = acceleration.GetClampedToMaxSize(maxAcceleration);
 	linearVelocity = linearVelocity + acceleration * deltaT;
 	linearVelocity = linearVelocity.GetClampedToMaxSize(maxVelocity);

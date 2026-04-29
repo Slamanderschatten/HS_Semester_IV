@@ -11,10 +11,12 @@
 UENUM(BlueprintType)
 enum class ENpcTargetInteraction : uint8
 {
+	Non,
 	FleeKinematic,
 	FleeDynamic,
 	SeekKinematic,
 	SeekDynamic,
+	ArriveDynamic,
 	
 	
 	

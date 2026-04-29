@@ -17,7 +17,7 @@ public:
 	UPROPERTY(EditAnywhere, Category="Npcs")
 	AActor* npcTarget;
 	UPROPERTY(EditAnywhere, Category="Npcs")
-	ENpcTargetInteraction npcTargetInteraction = ENpcTargetInteraction::SeekKinematic;
+	ENpcTargetInteraction npcTargetInteraction = ENpcTargetInteraction::Non;
 
 	
 	
