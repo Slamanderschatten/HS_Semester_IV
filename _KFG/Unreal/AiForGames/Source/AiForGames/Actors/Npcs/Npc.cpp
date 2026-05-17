@@ -3,6 +3,13 @@
 
 #include "Npc.h"
 
+#include "AIActorComps/NpcActivatable.h"
+#include "AIActorComps/NpcConsideration.h"
+#include "AIActorComps/NpcKnowledge.h"
+#include "AIActorComps/NpcReasoner.h"
+
+
+class UNpcActivatable;
 
 ANpc::ANpc()
 {
@@ -19,15 +26,17 @@ void ANpc::PostInitializeComponents()
 void ANpc::BeginPlay()
 {
 	Super::BeginPlay();
-	knowledge = FindComponentByClass<UAIKnowledge>();
-	GetComponents<UAIActivatable>(activatables);
-	consideration = FindComponentByClass<UAIConsideration>();
-	reasoner = FindComponentByClass<UAIReasoner>();
+	knowledge = FindComponentByClass<UNpcKnowledge>();
+	GetComponents<UNpcActivatable>(activatables);
+	GetComponents<UAIActivatable>(activatablesAI);
+	consideration = FindComponentByClass<UNpcConsideration>();
+	reasoner = FindComponentByClass<UNpcReasoner>();
 	
-	for (UAIActivatable* activatable : activatables)
-		activatable->SetKnowledge(knowledge);
-	reasoner->SetActivatables(&activatables);
-	reasoner->SetConsideration(consideration);
+	for (UNpcActivatable* activatable : activatables)
+		activatable->SetNpc(this);
+	reasoner->SetNpc(this);
+	reasoner->SetActivatables(&activatablesAI);
+	consideration->SetNpc(this);
 	
 }
 
@@ -40,25 +49,25 @@ void ANpc::Tick(float DeltaTime)
 /********************************* getter / setter ****************************************/
 
 
-UAIKnowledge& ANpc::Knowledge() const
+UNpcKnowledge& ANpc::Knowledge() const
 {
 	return *knowledge;
 }
 
 
-TArray<UAIActivatable*>& ANpc::Activatables()
+TArray<UNpcActivatable*>& ANpc::Activatables()
 {
 	return activatables;
 }
 
 
-UAIConsideration& ANpc::Considerations() const
+UNpcConsideration& ANpc::Considerations() const
 {
 	return *consideration;
 }
 
 
-UAIReasoner& ANpc::Reasoner() const
+UNpcReasoner& ANpc::Reasoner() const
 {
 	return *reasoner;
 }

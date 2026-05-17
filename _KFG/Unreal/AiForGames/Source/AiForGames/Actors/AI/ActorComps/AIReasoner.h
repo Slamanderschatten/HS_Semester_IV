@@ -21,7 +21,6 @@ public:
 protected:
 	TArray<UAIActivatable*>* activatables;
 	TArray<UAIActivatable*> activeActivatables;
-	UAIConsideration* consideration;
 
 private:
 	
@@ -40,7 +39,6 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType,
 	                           FActorComponentTickFunction* ThisTickFunction) override;
 	virtual void SetActivatables(TArray<UAIActivatable*>* activatableList);
-	virtual void SetConsideration(UAIConsideration* considerationForThis);
 	virtual void Process(){}
 	virtual UAIActivatable* GetActivatable(UClass* type) const;
 	virtual bool ActivateActivatable(UAIActivatable* activatable);

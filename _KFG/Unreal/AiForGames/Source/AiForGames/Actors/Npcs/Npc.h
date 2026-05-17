@@ -3,10 +3,10 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "AiForGames/Actors/AI/ActorComps/AIActivatable.h"
-#include "AiForGames/Actors/AI/ActorComps/AIConsideration.h"
-#include "AiForGames/Actors/AI/ActorComps/AIKnowledge.h"
-#include "AiForGames/Actors/AI/ActorComps/AIReasoner.h"
+#include "AIActorComps/NpcActivatable.h"
+#include "AIActorComps/NpcConsideration.h"
+#include "AIActorComps/NpcKnowledge.h"
+#include "AIActorComps/NpcReasoner.h"
 #include "GameFramework/Actor.h"
 #include "Npc.generated.h"
 
@@ -20,10 +20,11 @@ public:
 protected:
 	
 private:
-	UAIKnowledge* knowledge;
-	TArray<UAIActivatable*> activatables;
-	UAIConsideration* consideration;
-	UAIReasoner* reasoner;
+	UNpcKnowledge* knowledge;
+	TArray<UNpcActivatable*> activatables;
+	TArray<UAIActivatable*> activatablesAI;
+	UNpcConsideration* consideration;
+	UNpcReasoner* reasoner;
 	
 	
 	
@@ -35,10 +36,10 @@ public:
 	ANpc();
 	virtual void PostInitializeComponents() override;
 	virtual void Tick(float DeltaTime) override;
-	UAIKnowledge& Knowledge() const;
-	TArray<UAIActivatable*>& Activatables();
-	UAIConsideration& Considerations() const;
-	UAIReasoner& Reasoner() const;
+	UNpcKnowledge& Knowledge() const;
+	TArray<UNpcActivatable*>& Activatables();
+	UNpcConsideration& Considerations() const;
+	UNpcReasoner& Reasoner() const;
 
 protected:
 	virtual void BeginPlay() override;

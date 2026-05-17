@@ -3,13 +3,14 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "NpcActivatable.h"
 #include "AiForGames/Actors/AI/ActorComps/AIActivatable.h"
 #include "Components/ActorComponent.h"
 #include "DynamicArrive.generated.h"
 
 
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
-class AIFORGAMES_API UDynamicArrive : public UAIActivatable
+class AIFORGAMES_API UDynamicArrive : public UNpcActivatable
 {
 	GENERATED_BODY()
 

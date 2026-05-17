@@ -8,7 +8,7 @@
 #include "DynamicSeek.h"
 #include "KinematicSeek.h"
 #include "KinematikFlee.h"
-#include "AiForGames/Actors/Manager/GameManager.h"
+#include "AiForGames/Actors/Npcs/Npc.h"
 
 
 UNpcReasoner::UNpcReasoner()
@@ -28,7 +28,7 @@ void UNpcReasoner::BeginPlay()
 void UNpcReasoner::SetActivatables(TArray<UAIActivatable*>* activatableList)
 {
 	Super::SetActivatables(activatableList);
-	if (npcTarget == nullptr) npcTarget = AGameManager::I()->GetNpcTarget();
+	if (npcTarget == nullptr) npcTarget = npc->Knowledge().GetNpcTarget();
 	for (UAIActivatable* activatable : *activatableList)
 	{
 		if (UDynamicFlee* a = Cast<UDynamicFlee>(activatable))
@@ -44,6 +44,11 @@ void UNpcReasoner::SetActivatables(TArray<UAIActivatable*>* activatableList)
 	}
 }
 
+void UNpcReasoner::SetNpc(ANpc* npcActor)
+{
+	npc = npcActor;
+}
+
 
 void UNpcReasoner::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
@@ -54,8 +59,8 @@ void UNpcReasoner::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 void UNpcReasoner::Process()
 {
-	AActor* target = AGameManager::I()->GetNpcTarget();
-	ENpcTargetInteraction interaction = AGameManager::I()->GetNpcTargetInteraction();
+	AActor* target = npc->Knowledge().GetNpcTarget();
+	ENpcTargetInteraction interaction = npc->Knowledge().GetNpcTargetInteraction();
 	if (target == npcTarget && interaction == npcTargetInteraction)
 		return;
 	

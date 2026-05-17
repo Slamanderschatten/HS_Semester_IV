@@ -5,8 +5,6 @@
 
 #include <rapidjson/rapidjson.h>
 
-#include "AiForGames/Actors/Manager/GameManager.h"
-
 
 // Sets default values for this component's properties
 UAIReasoner::UAIReasoner()
@@ -41,12 +39,6 @@ void UAIReasoner::TickComponent(float DeltaTime, ELevelTick TickType, FActorComp
 void UAIReasoner::SetActivatables(TArray<UAIActivatable*>* activatableList)
 {
 	activatables = activatableList;
-}
-
-
-void UAIReasoner::SetConsideration(UAIConsideration* considerationForThis)
-{
-	this->consideration = considerationForThis;
 }
 
 
@@ -114,6 +106,8 @@ bool UAIReasoner::DeactivateActivatable(size_t activatableIndex)
 
 bool UAIReasoner::DeactivateActivatable(UAIActivatable* activatable)
 {
+	if (activatable == nullptr)
+		return true;
 	size_t activatableIndex = activatables->Find(activatable);
 	if (activatableIndex == INDEX_NONE)
 		return false;
