@@ -3,6 +3,8 @@
 
 #include "KinematicSeek.h"
 
+#include "AiForGames/Actors/Npcs/Npc.h"
+
 
 // Sets default values for this component's properties
 UKinematicSeek::UKinematicSeek()
@@ -29,5 +31,6 @@ void UKinematicSeek::ActualizePosition(float deltaT) const
 	FVector velocity = origin->GetActorLocation() - GetOwner()->GetActorLocation();
 	velocity = velocity.GetClampedToMaxSize(maxVelocity);
 	GetOwner()->SetActorLocation(GetOwner()->GetActorLocation() + velocity * deltaT);
+	npc->Knowledge().SetLinearVelocity(linearVelocity);
 }
 

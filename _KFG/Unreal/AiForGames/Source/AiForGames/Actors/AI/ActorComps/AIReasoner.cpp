@@ -22,7 +22,6 @@ void UAIReasoner::BeginPlay()
 {
 	Super::BeginPlay();
 
-	// ...
 	
 }
 
@@ -91,6 +90,16 @@ UAIActivatable* UAIReasoner::ActivateActivatable(UClass* type)
 	if (activatable)
 		ActivateActivatableWithoutCheck(activatable);
 	return activatable;
+}
+
+bool UAIReasoner::DeactivateActivatable(UClass* type)
+{
+	if (UAIActivatable* activatable = GetActivatable(type))
+	{
+		DeactivateActivatable(activatable);
+		return true;
+	}
+	return false;
 }
 
 

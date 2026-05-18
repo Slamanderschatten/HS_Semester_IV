@@ -3,6 +3,8 @@
 
 #include "DynamicSeek.h"
 
+#include "AiForGames/Actors/Npcs/Npc.h"
+
 
 // Sets default values for this component's properties
 UDynamicSeek::UDynamicSeek()
@@ -30,5 +32,6 @@ void UDynamicSeek::ActualizePosition(float deltaT)
 	linearVelocity = linearVelocity + acceleration * deltaT;
 	linearVelocity = linearVelocity.GetClampedToMaxSize(maxVelocity);
 	GetOwner()->SetActorLocation(GetOwner()->GetActorLocation() + linearVelocity * deltaT);
+	npc->Knowledge().SetLinearVelocity(linearVelocity);
 }
 

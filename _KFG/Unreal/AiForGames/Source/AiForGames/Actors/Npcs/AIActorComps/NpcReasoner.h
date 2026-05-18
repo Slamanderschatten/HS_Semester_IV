@@ -26,6 +26,7 @@ private:
 	AActor* npcTarget = nullptr;
 	ENpcTargetInteraction npcTargetInteraction;
 	UAIActivatable* moveActivatable;
+	bool flockingEnabled;
 
 
 public:

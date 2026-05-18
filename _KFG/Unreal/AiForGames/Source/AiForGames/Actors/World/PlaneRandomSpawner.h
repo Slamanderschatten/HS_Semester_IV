@@ -41,5 +41,7 @@ public:
 	
 	void Spawn();
 	void Clear();
+	TArray<AActor*>& GetSpawnedActors();
+	
 	
 };

@@ -21,6 +21,7 @@ public:
 
 protected:
 	AGameM* gameManager;
+	FVector linearVelocity;
 
 private:
 
@@ -30,6 +31,10 @@ public:
 	virtual void BeginPlay() override;
 	ENpcTargetInteraction GetNpcTargetInteraction() const;
 	AActor* GetNpcTarget() const;
+	void SetLinearVelocity(const FVector& NewLinearVelocity);
+	FVector GetLinearVelocity() const;
+	TArray<AActor*> GetNpcActors() const;
+	bool IsFlockingEnabled() const;
 
 protected:
 

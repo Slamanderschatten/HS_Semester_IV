@@ -85,3 +85,8 @@ void APlaneRandomSpawner::Clear()
 	spawnedActors.Empty();*/
 }
 
+TArray<AActor*>& APlaneRandomSpawner::GetSpawnedActors()
+{
+	return spawnedActors;
+}
+

@@ -3,6 +3,8 @@
 
 #include "KinematikFlee.h"
 
+#include "AiForGames/Actors/Npcs/Npc.h"
+
 
 // Sets default values for this component's properties
 UKinematikFlee::UKinematikFlee()
@@ -29,5 +31,6 @@ void UKinematikFlee::ActualizePosition(float deltaT) const
 	FVector velocity = GetOwner()->GetActorLocation() - origin->GetActorLocation();
 	velocity = velocity.GetClampedToMaxSize(maxVelocity);
 	GetOwner()->SetActorLocation(GetOwner()->GetActorLocation() + velocity * deltaT);
+	npc->Knowledge().SetLinearVelocity(linearVelocity);
 }
 

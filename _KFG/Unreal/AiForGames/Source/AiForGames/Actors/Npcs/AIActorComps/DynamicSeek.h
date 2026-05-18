@@ -21,10 +21,10 @@ public:
 	float maxVelocity = 100;
 
 protected:
-
-private:
 	FVector linearVelocity = FVector::ZeroVector;
 	AActor* origin;
+
+private:
 
 
 public:
@@ -36,5 +36,5 @@ public:
 protected:
 
 private:
-	void ActualizePosition(float deltaTime);
+	virtual void ActualizePosition(float deltaTime);
 };

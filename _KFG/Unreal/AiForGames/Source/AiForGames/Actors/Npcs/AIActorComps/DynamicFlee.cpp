@@ -3,8 +3,7 @@
 
 #include "DynamicFlee.h"
 
-
-
+#include "AiForGames/Actors/Npcs/Npc.h"
 
 
 void UDynamicFlee::SetSeeker(AActor* seeker)
@@ -29,5 +28,6 @@ void UDynamicFlee::ActualizePosition(float deltaT)
 	linearVelocity = linearVelocity + acceleration * deltaT;
 	linearVelocity = linearVelocity.GetClampedToMaxSize(maxVelocity);
 	GetOwner()->SetActorLocation(GetOwner()->GetActorLocation() + linearVelocity * deltaT);
+	npc->Knowledge().SetLinearVelocity(linearVelocity);
 }
 

@@ -44,6 +44,7 @@ public:
 	virtual bool ActivateActivatable(UAIActivatable* activatable);
 	virtual UAIActivatable* ActivateActivatable(size_t activatableIndex);
 	virtual UAIActivatable* ActivateActivatable(UClass* type);
+	virtual bool DeactivateActivatable(UClass* type);
 	virtual bool DeactivateActivatable(UAIActivatable* activatable);
 	virtual bool DeactivateActivatable(size_t activatableIndex);
 };

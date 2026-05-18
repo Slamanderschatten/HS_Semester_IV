@@ -36,3 +36,22 @@ AActor* UNpcKnowledge::GetNpcTarget() const
 	return gameManager->GetNpcTarget();
 }
 
+void UNpcKnowledge::SetLinearVelocity(const FVector& NewLinearVelocity)
+{
+	linearVelocity = NewLinearVelocity;
+}
+FVector UNpcKnowledge::GetLinearVelocity() const
+{
+	return linearVelocity;
+}
+
+TArray<AActor*> UNpcKnowledge::GetNpcActors() const
+{
+	return gameManager->GetNpcList();
+}
+
+bool UNpcKnowledge::IsFlockingEnabled() const
+{
+	return gameManager->IsFlockingEnabled();
+}
+

@@ -6,6 +6,7 @@
 #include "DynamicArrive.h"
 #include "DynamicFlee.h"
 #include "DynamicSeek.h"
+#include "Flocking.h"
 #include "KinematicSeek.h"
 #include "KinematikFlee.h"
 #include "AiForGames/Actors/Npcs/Npc.h"
@@ -20,8 +21,6 @@ UNpcReasoner::UNpcReasoner()
 void UNpcReasoner::BeginPlay()
 {
 	Super::BeginPlay();
-
-	
 }
 
 
@@ -61,38 +60,50 @@ void UNpcReasoner::Process()
 {
 	AActor* target = npc->Knowledge().GetNpcTarget();
 	ENpcTargetInteraction interaction = npc->Knowledge().GetNpcTargetInteraction();
-	if (target == npcTarget && interaction == npcTargetInteraction)
-		return;
-	
-	npcTargetInteraction = interaction;
-	npcTarget = target;
-	
-	UClass* type = nullptr;
-	switch (interaction)
+	if (target != npcTarget || interaction != npcTargetInteraction)
 	{
-	case ENpcTargetInteraction::FleeKinematic:
-		type = UKinematikFlee::StaticClass();
-		break;
-	case ENpcTargetInteraction::FleeDynamic:
-		type = UDynamicFlee::StaticClass();
-		break;
-	case ENpcTargetInteraction::SeekKinematic:
-		type = UKinematicSeek::StaticClass();
-		break;
-	case ENpcTargetInteraction::SeekDynamic:
-		type = UDynamicSeek::StaticClass();
-		break;
-	case ENpcTargetInteraction::ArriveDynamic:
-		type = UDynamicArrive::StaticClass();
-		break;
+		npcTargetInteraction = interaction;
+		npcTarget = target;
+	
+		UClass* type = nullptr;
+		switch (interaction)
+		{
+		case ENpcTargetInteraction::FleeKinematic:
+			type = UKinematikFlee::StaticClass();
+			break;
+		case ENpcTargetInteraction::FleeDynamic:
+			type = UDynamicFlee::StaticClass();
+			break;
+		case ENpcTargetInteraction::SeekKinematic:
+			type = UKinematicSeek::StaticClass();
+			break;
+		case ENpcTargetInteraction::SeekDynamic:
+			type = UDynamicSeek::StaticClass();
+			break;
+		case ENpcTargetInteraction::ArriveDynamic:
+			type = UDynamicArrive::StaticClass();
+			break;
+		case ENpcTargetInteraction::Flocking:
+			type = UFlocking::StaticClass();
 		
-	case ENpcTargetInteraction::Non:
-		break;
+		case ENpcTargetInteraction::Non:
+			break;
+		}
+	
+		DeactivateActivatable(moveActivatable);
+		moveActivatable = ActivateActivatable(type);
 	}
 	
-	DeactivateActivatable(moveActivatable);
-	moveActivatable = ActivateActivatable(type);
-	
+	if (npc->Knowledge().IsFlockingEnabled())
+	{
+		if (!flockingEnabled)
+			ActivateActivatable(UFlocking::StaticClass());
+	}
+	else
+	{
+		if (flockingEnabled)
+			DeactivateActivatable(UFlocking::StaticClass());
+	}
 	
 }
 
