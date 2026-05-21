@@ -14,6 +14,10 @@ APlaneRandomSpawner::APlaneRandomSpawner()
 void APlaneRandomSpawner::BeginPlay()
 {
 	Super::BeginPlay();
+	for (ANavGraphSpot* spot : graphSpots)
+	{
+		navGraph.addNode(spot);
+	}
 	Spawn();
 }
 

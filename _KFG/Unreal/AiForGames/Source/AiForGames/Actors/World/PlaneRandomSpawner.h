@@ -2,6 +2,7 @@
 
 
 #include "CoreMinimal.h"
+#include "AiForGames/Actors/NavGraph/NavGraph.h"
 #include "GameFramework/Actor.h"
 #include "Structs/FSpawnEntry.h"
 #include "PlaneRandomSpawner.generated.h"
@@ -20,11 +21,14 @@ public:
 	float distanceToNeighbour;
 	UPROPERTY(EditAnywhere, Category="Spawning")
 	TArray<FSpawnEntry> objectsToSpawn;
+	UPROPERTY(EditAnywhere, Category="NavGraph")
+	TArray<ANavGraphSpot*> graphSpots;
 	
 protected:
 	
 private:
 	TArray<AActor*> spawnedActors = TArray<AActor*>();
+	NavGraph navGraph;
 	
 	
 	
