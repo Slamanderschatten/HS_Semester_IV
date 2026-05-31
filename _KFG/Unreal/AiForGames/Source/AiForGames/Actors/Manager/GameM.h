@@ -2,6 +2,8 @@
 
 #pragma once
 
+#include <unordered_map>
+
 #include "CoreMinimal.h"
 #include "AiForGames/Actors/World/PlaneRandomSpawner.h"
 #include "Enums/NpcTargetInteraction.h"
@@ -25,6 +27,11 @@ public:
 
 protected:
 	APlayerController* playerController;
+	NavGraph navGraph;
+	TArray<ANavGraphSpot*> navGraphSpots;
+	ANavGraphSpot* targetNearestSpot;
+	std::unordered_map<ANavGraphSpot*, ANavGraphSpot*> dijkstraTreeMap;
+	
 
 private:
 
@@ -32,14 +39,17 @@ private:
 public:
 	AGameM();
 	virtual void Tick(float DeltaTime) override;
+	void SetMouseNearestGraphSpot();
 	AActor* GetNpcTarget() const;
 	ENpcTargetInteraction GetNpcTargetInteraction() const;
 	bool IsFlockingEnabled() const;
 	TArray<AActor*> GetNpcList() const;
+	ANavGraphSpot* GetNextDijkstraSpot(ANavGraphSpot* startSpot) const;
 
 protected:
 	virtual void BeginPlay() override;
 
 private:
 	void SetNpcTargetToMousePos() const;
+	void ActualizeDijkstraTree();
 };

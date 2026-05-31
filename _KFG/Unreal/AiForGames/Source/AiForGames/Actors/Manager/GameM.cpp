@@ -3,6 +3,10 @@
 
 #include "GameM.h"
 
+#include "HLSLMathAliases.h"
+#include "Factories/TextureRenderTargetFactoryNew.h"
+#include "Kismet/GameplayStatics.h"
+
 
 AGameM::AGameM()
 {
@@ -17,6 +21,20 @@ void AGameM::BeginPlay()
 	playerController->bShowMouseCursor = true;
 	playerController->bEnableMouseOverEvents = true;
 	playerController->bEnableClickEvents = true;
+	
+	TArray<AActor*> navGraphSpotActors;
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ANavGraphSpot::StaticClass(), navGraphSpotActors);
+	for (AActor* actor : navGraphSpotActors)
+	{
+		ANavGraphSpot* spot = Cast<ANavGraphSpot>(actor);
+		navGraphSpots.Add(spot);
+		navGraph.addNode(spot);
+	}
+	for (ANavGraphSpot* spot : navGraphSpots)
+	{
+		for (ANavGraphSpot* neighbour : spot->neighbours)
+			navGraph.addEdgeForSpots(spot, neighbour);
+	}
 }
 
 
@@ -48,6 +66,26 @@ void AGameM::Tick(float DeltaTime)
 }
 
 
+void AGameM::SetMouseNearestGraphSpot()
+{
+	ANavGraphSpot* nearestSpot = nullptr;
+	float nearestSpotDistance = 100000;
+	for (ANavGraphSpot* spot : navGraphSpots)
+	{
+		float dist = FVector::Dist(spot->GetActorLocation(), npcTarget->GetActorLocation());
+		if (dist < nearestSpotDistance)
+		{
+			nearestSpot = spot;
+			nearestSpotDistance = dist;
+		}
+	}
+	if (nearestSpot != targetNearestSpot)
+	{
+		ActualizeDijkstraTree();
+	}
+}
+
+
 void AGameM::SetNpcTargetToMousePos() const
 {
 	if (npcTarget == nullptr)
@@ -74,6 +112,23 @@ void AGameM::SetNpcTargetToMousePos() const
 	{
 		npcTarget->SetActorLocation(Hit.ImpactPoint);
 	}
+}
+
+
+void AGameM::ActualizeDijkstraTree()
+{
+	dijkstraTreeMap.clear();
+	
+	//todo
+}
+
+
+ANavGraphSpot* AGameM::GetNextDijkstraSpot(ANavGraphSpot* startSpot) const
+{
+	auto it = dijkstraTreeMap.find(startSpot);
+	if (it != dijkstraTreeMap.end())
+		return it->second;
+	return nullptr;
 }
 
 

@@ -10,6 +10,9 @@ UCLASS()
 class AIFORGAMES_API ANavGraphSpot : public AActor
 {
 	GENERATED_BODY()
+public:
+	UPROPERTY(EditAnywhere, Category="Spot")
+	TArray<ANavGraphSpot*> neighbours;
 
 public:
 

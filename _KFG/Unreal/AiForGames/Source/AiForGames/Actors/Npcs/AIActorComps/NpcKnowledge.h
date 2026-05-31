@@ -35,6 +35,7 @@ public:
 	FVector GetLinearVelocity() const;
 	TArray<AActor*> GetNpcActors() const;
 	bool IsFlockingEnabled() const;
+	ANavGraphSpot* GetNextDijkstraSpot(ANavGraphSpot* startSpot) const;
 
 protected:
 

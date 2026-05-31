@@ -55,3 +55,8 @@ bool UNpcKnowledge::IsFlockingEnabled() const
 	return gameManager->IsFlockingEnabled();
 }
 
+ANavGraphSpot* UNpcKnowledge::GetNextDijkstraSpot(ANavGraphSpot* startSpot) const
+{
+	return gameManager->GetNextDijkstraSpot(startSpot);
+}
+

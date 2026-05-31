@@ -20,8 +20,8 @@ public:
 	void addEdge(nodeT& nodeA, nodeT& nodeB)
 	{
 		edges.Add(GraphEdge<nodeT>(nodeA, nodeB));
-		nodeA->addEdge(edges.back());
-		nodeB->addEdge(edges.back());
+		nodeA.addEdge(edges[edges.Num()-1]);
+		nodeB.addEdge(edges[edges.Num()-1]);
 	}
 	void removeEdge(size_t edgeIndex)
 	{
