@@ -131,29 +131,20 @@ void AGameM::ActualizeDijkstraTree()
 	dijkstraTreeMap.clear();
 
 	if (!targetNearestSpot)
-	{
 		return;
-	}
 
 	std::unordered_map<ANavGraphSpot*, float> distances;
 
 	for (ANavGraphSpot* spot : navGraphSpots)
-	{
 		distances[spot] = FLT_MAX;
-	}
 
 	using QueueEntry = std::pair<float, ANavGraphSpot*>;
-
 	auto Compare = [](const QueueEntry& a, const QueueEntry& b)
 	{
 		return a.first > b.first;
 	};
 
-	std::priority_queue<
-		QueueEntry,
-		std::vector<QueueEntry>,
-		decltype(Compare)
-	> queue(Compare);
+	std::priority_queue<QueueEntry,std::vector<QueueEntry>, decltype(Compare)> queue(Compare);
 
 	distances[targetNearestSpot] = 0.0f;
 	queue.push({0.0f, targetNearestSpot});
@@ -164,30 +155,19 @@ void AGameM::ActualizeDijkstraTree()
 		queue.pop();
 
 		if (currentDistance > distances[current])
-		{
 			continue;
-		}
 
 		for (ANavGraphSpot* neighbour : current->neighbours)
 		{
 			if (!neighbour)
-			{
 				continue;
-			}
 
-			float edgeCost = FVector::Distance(
-				current->GetActorLocation(),
-				neighbour->GetActorLocation());
-
+			float edgeCost = FVector::Distance(current->GetActorLocation(), neighbour->GetActorLocation());
 			float newDistance = currentDistance + edgeCost;
 
 			if (newDistance < distances[neighbour])
 			{
 				distances[neighbour] = newDistance;
-
-				// WICHTIG:
-				// neighbour -> current
-				// current liegt näher am Ziel
 				dijkstraTreeMap[neighbour] = current;
 
 				queue.push({newDistance, neighbour});
