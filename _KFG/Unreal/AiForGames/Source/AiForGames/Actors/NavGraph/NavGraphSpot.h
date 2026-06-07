@@ -13,6 +13,8 @@ class AIFORGAMES_API ANavGraphSpot : public AActor
 public:
 	UPROPERTY(EditAnywhere, Category="Spot")
 	TArray<ANavGraphSpot*> neighbours;
+	UPROPERTY(EditAnywhere, Category="Spot")
+	float spotRadius = 0;
 
 public:
 

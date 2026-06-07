@@ -60,3 +60,13 @@ ANavGraphSpot* UNpcKnowledge::GetNextDijkstraSpot(ANavGraphSpot* startSpot) cons
 	return gameManager->GetNextDijkstraSpot(startSpot);
 }
 
+ANavGraphSpot* UNpcKnowledge::GetDijkstraTargetSpot() const
+{
+	return gameManager->GetDijkstraTargetSpot();
+}
+
+AGameM& UNpcKnowledge::GetGameManager() const
+{
+	return *gameManager;
+}
+

@@ -18,7 +18,7 @@ enum class ENpcTargetInteraction : uint8
 	SeekDynamic,
 	ArriveDynamic,
 	Flocking,
-	
+	NavGraphFlocking,
 	
 	
 };

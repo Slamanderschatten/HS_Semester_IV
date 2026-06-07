@@ -3,6 +3,7 @@
 
 #include "NpcReasoner.h"
 
+#include "DijkstraTarget.h"
 #include "DynamicArrive.h"
 #include "DynamicFlee.h"
 #include "DynamicSeek.h"
@@ -34,8 +35,6 @@ void UNpcReasoner::SetActivatables(TArray<UAIActivatable*>* activatableList)
 			a->SetSeeker(npcTarget);
 		if (UKinematikFlee* a = Cast<UKinematikFlee>(activatable))
 			a->SetSeeker(npcTarget);
-		if (UDynamicSeek* a = Cast<UDynamicSeek>(activatable))
-			a->SetTarget(npcTarget);
 		if (UKinematicSeek* a = Cast<UKinematicSeek>(activatable))
 			a->SetTarget(npcTarget);
 		if (UDynamicArrive* a = Cast<UDynamicArrive>(activatable))
@@ -85,6 +84,9 @@ void UNpcReasoner::Process()
 			break;
 		case ENpcTargetInteraction::Flocking:
 			type = UFlocking::StaticClass();
+			break;
+		case ENpcTargetInteraction::NavGraphFlocking:
+			type = UDijkstraTarget::StaticClass();
 		
 		case ENpcTargetInteraction::Non:
 			break;

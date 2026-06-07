@@ -22,18 +22,19 @@ public:
 
 protected:
 	FVector linearVelocity = FVector::ZeroVector;
-	AActor* origin;
+	AActor* origin = nullptr;
 
 private:
 
 
 public:
 	UDynamicSeek();
-	void SetTarget(AActor* seeker);
+	virtual void SetTarget(AActor* target);
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType,
 							   FActorComponentTickFunction* ThisTickFunction) override;
 
 protected:
+	virtual void AutoGetTarget();
 
 private:
 	virtual void ActualizePosition(float deltaTime);

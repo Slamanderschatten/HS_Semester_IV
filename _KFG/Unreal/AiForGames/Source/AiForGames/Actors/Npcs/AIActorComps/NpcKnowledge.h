@@ -20,6 +20,7 @@ class AIFORGAMES_API UNpcKnowledge : public UAIKnowledge
 public:
 
 protected:
+	UPROPERTY()
 	AGameM* gameManager;
 	FVector linearVelocity;
 
@@ -36,6 +37,8 @@ public:
 	TArray<AActor*> GetNpcActors() const;
 	bool IsFlockingEnabled() const;
 	ANavGraphSpot* GetNextDijkstraSpot(ANavGraphSpot* startSpot) const;
+	ANavGraphSpot* GetDijkstraTargetSpot() const;
+	AGameM& GetGameManager() const;
 
 protected:
 

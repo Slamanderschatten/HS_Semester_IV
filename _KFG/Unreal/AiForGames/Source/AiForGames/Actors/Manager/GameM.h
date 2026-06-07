@@ -40,11 +40,13 @@ public:
 	AGameM();
 	virtual void Tick(float DeltaTime) override;
 	void SetMouseNearestGraphSpot();
+	ANavGraphSpot* GetNearestSpot(const FVector& pos);
 	AActor* GetNpcTarget() const;
 	ENpcTargetInteraction GetNpcTargetInteraction() const;
 	bool IsFlockingEnabled() const;
 	TArray<AActor*> GetNpcList() const;
 	ANavGraphSpot* GetNextDijkstraSpot(ANavGraphSpot* startSpot) const;
+	ANavGraphSpot* GetDijkstraTargetSpot() const;
 
 protected:
 	virtual void BeginPlay() override;

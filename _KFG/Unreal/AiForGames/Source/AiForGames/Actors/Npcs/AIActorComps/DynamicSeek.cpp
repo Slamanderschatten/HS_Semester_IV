@@ -10,9 +10,9 @@
 UDynamicSeek::UDynamicSeek()
 {
 }
-void UDynamicSeek::SetTarget(AActor* seeker)
+void UDynamicSeek::SetTarget(AActor* target)
 {
-	origin = seeker;
+	origin = target;
 }
 
 
@@ -20,8 +20,14 @@ void UDynamicSeek::SetTarget(AActor* seeker)
 void UDynamicSeek::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-
+	AutoGetTarget();
 	ActualizePosition(DeltaTime);
+}
+
+
+void UDynamicSeek::AutoGetTarget()
+{
+	SetTarget(npc->Knowledge().GetGameManager().GetNpcTarget());
 }
 
 
