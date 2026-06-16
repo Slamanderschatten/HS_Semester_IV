@@ -1,0 +1,118 @@
+﻿# =========================
+# Unreal Engine
+# =========================
+
+# Build / Generated
+Binaries/
+DerivedDataCache/
+Intermediate/
+Saved/
+Build/
+
+# Ignore all files in Saved (logs, autosaves, caches, etc.)
+Saved/*
+
+# Optional: allow Config inside Saved (selten nötig)
+# !Saved/Config/
+
+# =========================
+# User-specific files
+# =========================
+
+# Visual Studio / Rider / VSCode
+.vs/
+.vscode/
+.idea/
+
+# User files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Rider
+*.DotSettings.user
+
+# =========================
+# Compiled source / binaries
+# =========================
+
+# C++
+*.obj
+*.o
+*.lo
+*.la
+*.al
+*.dll
+*.exe
+*.out
+*.app
+*.ipa
+*.dylib
+*.so
+
+# =========================
+# Logs / temp
+# =========================
+
+*.log
+*.tmp
+*.temp
+*.bak
+*.swp
+*.old
+
+# =========================
+# Unreal specific
+# =========================
+
+# Ignore auto-generated project files
+*.opensdf
+*.sdf
+*.VC.db
+*.VC.opendb
+
+# Ignore cooked content
+Saved/Cooked/
+Saved/StagedBuilds/
+
+# Ignore shader cache
+Saved/Shaders/
+
+# Ignore crash reports
+Saved/Crashes/
+
+# Ignore web cache (deine Frage 😉)
+Saved/WebCache*
+
+# =========================
+# OS files
+# =========================
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# macOS
+.DS_Store
+
+# Linux
+*~
+
+# =========================
+# Keep important files
+# =========================
+
+# DO NOT ignore these:
+!Config/
+!Content/
+!Source/
+!Plugins/
+
+# Project files
+!*.uproject
+!*.uplugin
+
+# Optional: keep .gitkeep files
+!.gitkeep

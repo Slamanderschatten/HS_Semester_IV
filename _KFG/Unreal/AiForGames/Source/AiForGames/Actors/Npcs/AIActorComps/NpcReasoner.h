@@ -1,0 +1,44 @@
+﻿// Copyright © Slamanderschatten. All rights reserved.
+
+#pragma once
+
+#include "CoreMinimal.h"
+#include "AiForGames/Actors/AI/ActorComps/AIReasoner.h"
+#include "AiForGames/Actors/Manager/Enums/NpcTargetInteraction.h"
+#include "Components/ActorComponent.h"
+#include "NpcReasoner.generated.h"
+
+
+class ANpc;
+
+UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
+class AIFORGAMES_API UNpcReasoner : public UAIReasoner
+{
+	GENERATED_BODY()
+
+public:
+
+protected:
+
+private:
+	
+	ANpc* npc;
+	AActor* npcTarget = nullptr;
+	ENpcTargetInteraction npcTargetInteraction;
+	UAIActivatable* moveActivatable;
+	bool flockingEnabled;
+
+
+public:
+	UNpcReasoner();
+	virtual void BeginPlay() override;
+	virtual void TickComponent(float DeltaTime, ELevelTick TickType,
+	                           FActorComponentTickFunction* ThisTickFunction) override;
+	virtual void Process() override;
+	virtual void SetActivatables(TArray<UAIActivatable*>* activatableList) override;
+	void SetNpc(ANpc* npcActor);
+
+protected:
+
+private:
+};
