@@ -1,0 +1,179 @@
+Evaluationsplan für den Rogue-like Flipper-Simulator
+1. Ziel der Evaluation
+
+Ziel der Evaluation ist die Untersuchung der Benutzeroberfläche des Rogue-like Flipper-Simulators hinsichtlich der Anforderungen aus:
+
+DIN EN ISO 9241-110 (Interaktionsprinzipien)
+DIN EN ISO 9241-112 (Informationsdarstellung)
+
+Dabei werden die drei zentralen Usability-Ziele untersucht:
+
+Usability-Ziel	Fokus
+Effektivität	Können Nutzer Aufgaben erfolgreich abschließen?
+Effizienz	Wie schnell und mit welchem Aufwand werden Aufgaben erledigt?
+Zufriedenheit	Wie wird die Benutzeroberfläche subjektiv wahrgenommen?
+2. Zu überprüfende Annahmen aus der Usability-Spezifikation
+Annahme A1
+
+Nutzer finden die Bearbeitungsfunktionen innerhalb von 10 Sekunden.
+
+Annahme A2
+
+Nutzer können einen Bumper ohne Hilfestellung platzieren.
+
+Annahme A3
+
+Nutzer können einen Bumper austauschen oder verschieben.
+
+Annahme A4
+
+Nutzer erkennen den aktuellen Bearbeitungsmodus.
+
+Annahme A5
+
+Nutzer können Änderungen rückgängig machen.
+
+Annahme A6
+
+Die Benutzeroberfläche wird als übersichtlich und verständlich wahrgenommen.
+
+3. Evaluationsmethoden
+3.1 Heuristische Evaluation
+
+Durchführung durch 2–3 Studierende oder Experten.
+
+Prüfung anhand der ISO 9241-110:
+
+Aufgabenangemessenheit
+Selbstbeschreibungsfähigkeit
+Erwartungskonformität
+Lernförderlichkeit
+Steuerbarkeit
+Fehlertoleranz
+Individualisierbarkeit
+
+Prüfung anhand der ISO 9241-112:
+
+Klarheit der Darstellung
+Unterscheidbarkeit von Elementen
+Informationsdichte
+Konsistenz
+Lesbarkeit
+3.2 Beobachteter Usability-Test
+Teilnehmer
+
+8–10 Probanden
+
+Aufteilung:
+
+4–5 Gelegenheitsspieler
+4–5 erfahrene Spieler
+3.3 Zeitmessung
+
+Messung für:
+
+Auffinden des Layout-Editors
+Platzieren eines Bumpers
+Austauschen eines Bumpers
+Rückgängigmachen einer Änderung
+
+Vergleich mit vorherigem GOMS-Modell.
+
+3.4 Fragebogen
+
+Nach Abschluss aller Aufgaben.
+
+Grundlage:
+
+UEQ
+SUS
+4. User Journeys und Testaufgaben
+Aufgabe 1
+
+„Öffnen Sie den Layout-Editor.“
+
+Messgrößen:
+
+Zeit
+Fehler
+Erfolgsquote
+Aufgabe 2
+
+„Platzieren Sie einen Standard-Bumper an einer freien Stelle.“
+
+Messgrößen:
+
+Zeit
+Fehlversuche
+Erfolgsquote
+Aufgabe 3
+
+„Ersetzen Sie einen vorhandenen Bumper durch einen Multiplikator-Bumper.“
+
+Messgrößen:
+
+Zeit
+Fehlversuche
+Erfolgsquote
+Aufgabe 4
+
+„Verschieben Sie einen Bumper an eine andere Position.“
+
+Messgrößen:
+
+Zeit
+Fehlversuche
+Erfolgsquote
+Aufgabe 5
+
+„Machen Sie Ihre letzte Änderung rückgängig.“
+
+Messgrößen:
+
+Zeit
+Erfolgsquote
+Aufgabe 6
+
+„Optimieren Sie das Spielfeld für möglichst viele Ballkontakte.“
+
+Messgrößen:
+
+Freie Exploration
+Nutzung von Funktionen
+Beobachtungen
+5. Zuordnung zu den Usability-Zielen
+Ziel	Messung
+Effektivität	Erfolgsquote, Fehleranzahl
+Effizienz	Zeitmessung, GOMS-Vergleich
+Zufriedenheit	Fragebogen, Interview
+ISO 9241-110	Beobachtung + Interview
+ISO 9241-112	Fragebogen + Heuristik
+6. Organisatorischer Ablauf
+Dauer
+
+ca. 20–25 Minuten pro Teilnehmer
+
+Ablauf
+Begrüßung
+Einführung
+Bearbeitung der Aufgaben
+Zeitmessung
+Fragebogen
+Abschlussinterview
+7. Logistik
+Ort
+Labor
+Seminarraum
+Ruhiger Arbeitsplatz
+Benötigte Utensilien
+Laptop/PC
+Maus
+Evaluationsbogen
+Stoppuhr
+Beobachtungsprotokoll
+8. Unterlagen
+Einverständniserklärung
+Aufgabenblatt
+Beobachtungsbogen
+Fragebogen
+Interviewleitfaden
